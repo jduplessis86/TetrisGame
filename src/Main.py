@@ -4,7 +4,7 @@ import threading
 import os
 import Getch
 import sys
-import SceanManager
+from SceneManager import SceneManager
 from DisplayController import DisplayControllerInterface 
 
 
@@ -21,7 +21,7 @@ def input_thread(list):
 			return
         
 
-def do_stuff(c):
+def do_stuff(c,SM):
     list = []
     index = 0
     t = threading.Thread(target=input_thread, args =(list,))
@@ -29,9 +29,10 @@ def do_stuff(c):
     while not list:
         index += 1
         index = index % 15
-        c.clearScreen()
-        c.drawSquar(3,10,index)
-        time.sleep(1)
+        #c.clearScreen()
+        #c.drawSquar(3,10,index)
+        SM.drawScene()
+        time.sleep(0.5)
 
 
 	
@@ -39,8 +40,8 @@ def do_stuff(c):
 if __name__ == "__main__":
 
 	controler = DisplayControllerInterface()
-	
-	do_stuff(controler)
+	SM = SceneManager(20,40)
+	do_stuff(controler,SM)
 
 
 

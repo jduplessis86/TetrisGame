@@ -1,21 +1,22 @@
 
 class SceneManager(object):
-	def _init_(self,hight,width):
-		entitys =[]
-		image = []
+	def __init__(self,hight,width):
+		self.entitys =[]
+		self.image = []
 		for x in range(hight):
-			image.append([])
+			self.image.append([])
 			for y in range(width):
-				image[y].append('w')
+				self.image[x].append('w')
 
 
 	def addEntity(self,entity):
-		entity.insert(entity)
+		self.entity.insert(entity)
 
 	def updateScene(self):
 		pass
 
 	def drawScene(self):
-		for x in len(image):
-			print(str(image[x]).strip(',[]'))
+		for index,val in enumerate(self.image):
+			print(str(self.image[index]).strip(',[]'))
+
 

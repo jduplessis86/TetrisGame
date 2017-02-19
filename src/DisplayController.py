@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 import os
 
-class DisplayControllerInterface():
+class DisplayControllerInterface(object):
 
 	def _init_(self):
 		self.maxHight = 20
