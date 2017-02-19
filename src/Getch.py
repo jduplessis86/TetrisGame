@@ -14,11 +14,14 @@ class _Getch:
     def __init__(self):
         try:
             self.impl = _GetchWindows()
-        #except ImportError:
-            #try:
-            #    self.impl = _GetchMacCarbon()
-        except(AttributeError, ImportError):
-            self.impl = _GetchUnix()
+            print("Try windows")
+        except ImportError:
+            try:
+                self.impl = _GetchMacCarbon()
+                print("Try carbon")
+            except(AttributeError, ImportError):
+                self.impl = _GetchUnix()
+                print("Try Unix")
 
     def __call__(self):
         return self.impl()
@@ -33,9 +36,10 @@ class _GetchUnix:
         fd = sys.stdin.fileno()
         old_settings = termios.tcgetattr(fd)
         try:
-            tty.setraw(sys.stdin.fileno())
+            tty.setcbreak(sys.stdin.fileno())
             ch = sys.stdin.read(1)
         finally:
+            pass
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
             return ch
 
@@ -48,7 +52,6 @@ class _GetchWindows:
         import msvcrt
         return msvcrt.getch()
 
-"""
 class _GetchMacCarbon:
     
    # A function which returns the current ASCII key that is down;
@@ -76,6 +79,6 @@ class _GetchMacCarbon:
             #
             (what,msg,when,where,mod)=Carbon.Evt.GetNextEvent(0x0008)[1]
             return chr(msg & 0x000000FF)
-"""
+
 
 getch = _Getch()
