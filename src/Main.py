@@ -29,9 +29,9 @@ def do_stuff(c,SM):
     while not list:
         index += 1
         index = index % 15
-        #c.clearScreen()
-        #c.drawSquar(3,10,index)
-        SM.drawScene()
+        c.clearScreen()
+        c.drawSquar(3,10,index)
+        #SM.drawScene()
         time.sleep(0.5)
 
 
