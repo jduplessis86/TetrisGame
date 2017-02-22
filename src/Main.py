@@ -34,8 +34,8 @@ def do_stuff(c,SM):
         #SM.drawScene()
         time.sleep(0.5)
 
-
-	
+def get_random_number():
+	return 4 #guaranteed to be random
 
 if __name__ == "__main__":
 
